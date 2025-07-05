@@ -5,10 +5,9 @@ import com.gurdeep.product.service.CategoryService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/categories")
@@ -22,12 +21,25 @@ public class CategoryController {
     public ResponseEntity<CategoryDto> createCategory(@RequestBody CategoryDto categoryDto){
        return new ResponseEntity<>(categoryService.createCategory(categoryDto),HttpStatus.CREATED);
     }
+    //Get All Category List
+    @GetMapping
+    public List<CategoryDto> getAllCategory(){  //In case of List not use Response Entity
+        return categoryService.getAllCategory();
+    }
+    //Get Category by id
+    @GetMapping("/{id}")
+    public CategoryDto getCategoryById(@PathVariable Long id){
+        return categoryService.getCategoryById(id);
+    }
+    //Delete Category ById
+    @DeleteMapping("/{id}")
+    public String deleteCategory(@PathVariable Long id){
+        return  categoryService.deleteCategoryById(id);
+    }
+    //Update product ById
+    @PutMapping("/{id}")
+    public CategoryDto updateCategoryById(@RequestBody CategoryDto categoryDto, @PathVariable Long id){
+        return categoryService.updateCategoryById(categoryDto, id);
+    }
 
-    //update by id
-
-    //Delete by id
-
-    //list All
-
-    //Get One
 }
