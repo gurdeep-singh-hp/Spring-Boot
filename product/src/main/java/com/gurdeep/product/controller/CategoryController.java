@@ -1,6 +1,7 @@
 package com.gurdeep.product.controller;
 
 import com.gurdeep.product.dto.CategoryDto;
+import com.gurdeep.product.exception.CategoryAlreadyExistException;
 import com.gurdeep.product.service.CategoryService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,14 @@ public class CategoryController {
 
     //Create
     @PostMapping
-    public ResponseEntity<CategoryDto> createCategory(@RequestBody CategoryDto categoryDto){
+    //public ResponseEntity<CategoryDto> createCategory(@RequestBody CategoryDto categoryDto){
+    public ResponseEntity<?> createCategory(@RequestBody CategoryDto categoryDto){
+//        try{
+//            CategoryDto savedCategory = categoryService.createCategory(categoryDto);
+//            return ResponseEntity.status(HttpStatus.CREATED).body(savedCategory);
+//        } catch (CategoryAlreadyExistException e) {
+//            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+//        }
        return new ResponseEntity<>(categoryService.createCategory(categoryDto),HttpStatus.CREATED);
     }
     //Get All Category List
