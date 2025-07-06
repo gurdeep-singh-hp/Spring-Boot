@@ -29,13 +29,13 @@ public class ProductController {
     }
 
     //Get Product ById
-    @GetMapping
+    @GetMapping("/{id}")
     public ProductDto getProductById(@PathVariable Long id){
         return productService.getProductById(id);
     }
 
     //Delete Product ById
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public String deleteProduct(@PathVariable Long id){
         return productService.deleteProduct(id);
     }
