@@ -6,6 +6,7 @@ import com.gurdeep.product.service.CategoryService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +19,9 @@ public class CategoryController {
     private CategoryService categoryService;
 
     //Create
+    //@PreAuthorize("hasAuthority('ROLE_Admin')")
+    //@PreAuthorize("hasAnyAuthority('ROLE_Admin', 'ROLE_Seller')")
+    @PreAuthorize("hasAuthority('ROLE_Admin') or hasAuthority('ROLE_Seller')")
     @PostMapping
     //public ResponseEntity<CategoryDto> createCategory(@RequestBody CategoryDto categoryDto){
     public ResponseEntity<?> createCategory(@RequestBody CategoryDto categoryDto){
