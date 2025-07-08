@@ -21,7 +21,7 @@ public class CategoryController {
     //Create
     //@PreAuthorize("hasAuthority('ROLE_Admin')")
     //@PreAuthorize("hasAnyAuthority('ROLE_Admin', 'ROLE_Seller')")
-    @PreAuthorize("hasAuthority('ROLE_Admin') or hasAuthority('ROLE_Seller')")
+    @PreAuthorize("hasAuthority('ROLE_Admin')")
     @PostMapping
     //public ResponseEntity<CategoryDto> createCategory(@RequestBody CategoryDto categoryDto){
     public ResponseEntity<?> createCategory(@RequestBody CategoryDto categoryDto){

@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,6 +29,7 @@ public class ProductController {
             responseCode = "201",
             description = "Created"
     )
+    @PreAuthorize("hasAuthority('ROLE_Admin') or hasAuthority('ROLE_Seller')")
     @PostMapping
     public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto){
         return new ResponseEntity<>(productService.createProduct(productDto), HttpStatus.CREATED);
